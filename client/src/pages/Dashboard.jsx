@@ -1,14 +1,33 @@
-import React from 'react'
+import { use, useEffect, useState } from "react"
+import { dummyEmployeeDashboardData, dummyAdminDashboardData} from "../assets/assets"
+import Loading from "../components/Loading"
+import EmployeeDashboard from "../components/EmployeeDashboard"
+import AdminDashboard from "../components/AdminDashboard"
+
 
 const dashboard = () => {
-  return (
-  <>
-    <h1>This is Dashborad</h1>
-    <div>dashboard</div>
+   const [data,setData] = useState(null)
+   const [loading,setLoading] = useState(true)
+
+   useEffect(()=>{
+    setData(dummyAdminDashboardData)
+    setTimeout(() => {
+      setLoading(false)
+      
+    }, 1000);
+   })
+   if(loading) return <Loading/>
+   if(!data) return <p className="text-center text-slate-500 py-12">Faild to load data</p>
   
-  
-  </>
-  )
+   if(data.role === 'ADMIN'){
+    return <AdminDashboard data={data}/>
+   }else{
+    return <EmployeeDashboard data={data}/>
+   }
+
+
+
+
 }
 
 export default dashboard
