@@ -85,7 +85,7 @@ const Sidebar = () => {
             </div>
             <div className="min-w-0">
               <p className="text-[13px] font-medium text-slate-200 truncate">
-                userName
+                {userName}
               </p>
               <p className="text-[11px]  text-slate-500 truncate">
                 {role === "ADMIN" ? "Adminstrator" : "Employee"}
